@@ -8,6 +8,7 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -103,6 +104,29 @@ const OnboardingScreen = () => {
             />
           ))}
         </View>
+        <View style={styles.footerButtonsContainer}>
+          <View style={styles.footerButtons}>
+            <TouchableOpacity
+              style={[
+                styles.btn,
+                {
+                  backgroundColor: COLORS.white,
+                  borderWidth: 2,
+                  borderColor: "teal",
+                },
+              ]}
+            >
+              <Text style={[styles.btnLabel, { color: "#000000" }]}>SKIP</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btn}>
+              <Text
+                style={[styles.btnLabel, { fontWeight: "bold", fontSize: 16 }]}
+              >
+                NEXT
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   };
@@ -167,4 +191,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 3,
     borderRadius: 8,
   },
+  footerButtonsContainer: { marginBottom: 20 },
+  footerButtons: { flexDirection: "row" },
+  btn: {
+    flex: 1,
+    height: 50,
+    marginHorizontal: 20,
+    borderRadius: 8,
+    backgroundColor: "teal",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  btnLabel: { color: "#ffffff" },
 });
