@@ -11,5 +11,5 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  homeScreenText: { flex: 1, justifyContent: "center", alignItems: "center" },
+  //   homeScreenText: { flex: 1, justifyContent: "center", alignItems: "center" },
 });

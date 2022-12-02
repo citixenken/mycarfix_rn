@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -41,7 +42,7 @@ const slides = [
   {
     id: "4",
     image: require("../assets/images/mcarfix-logo.jpg"),
-    title: "To Record your Car service History",
+    title: "To Record your Car Service History",
     subtitle:
       "mCarFix records and tracks your vehicle's service history and ensures it's always up to date. Just key in your current mileage and mCarFix reports what you need to service before you embark on your journey.",
   },
@@ -88,6 +89,8 @@ const OnboardingScreen = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const slideRef = useRef();
 
+  const navigation = useNavigation();
+
   const Footer = () => {
     return (
       <View style={styles.footer}>
@@ -106,28 +109,52 @@ const OnboardingScreen = () => {
           ))}
         </View>
         <View style={styles.footerButtonsContainer}>
-          <View style={styles.footerButtons}>
-            <TouchableOpacity
-              style={[
-                styles.btn,
-                {
-                  backgroundColor: COLORS.white,
-                  borderWidth: 1,
-                  borderColor: "teal",
-                },
-              ]}
-              onPress={skipSlides}
-            >
-              <Text style={[styles.btnLabel, { color: "#000000" }]}>SKIP</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btn} onPress={goNextSlide}>
-              <Text
-                style={[styles.btnLabel, { fontWeight: "bold", fontSize: 16 }]}
+          {currentSlideIndex === slides.length - 1 ? (
+            <View style={styles.startButton}>
+              <TouchableOpacity
+                style={styles.btn}
+                onPress={() => navigation.replace("HomeScreen")}
+                // onPress={() => navigation.navigate("HomeScreen")}
               >
-                NEXT
-              </Text>
-            </TouchableOpacity>
-          </View>
+                <Text
+                  style={[
+                    styles.btnLabel,
+                    { fontWeight: "bold", fontSize: 16 },
+                  ]}
+                >
+                  START
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View style={styles.footerButtons}>
+              <TouchableOpacity
+                style={[
+                  styles.btn,
+                  {
+                    backgroundColor: COLORS.white,
+                    borderWidth: 1,
+                    borderColor: "teal",
+                  },
+                ]}
+                onPress={skipSlides}
+              >
+                <Text style={[styles.btnLabel, { color: "#000000" }]}>
+                  SKIP
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.btn} onPress={goNextSlide}>
+                <Text
+                  style={[
+                    styles.btnLabel,
+                    { fontWeight: "bold", fontSize: 16 },
+                  ]}
+                >
+                  NEXT
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </View>
     );
@@ -218,6 +245,7 @@ const styles = StyleSheet.create({
   },
   footerButtonsContainer: { marginBottom: 20 },
   footerButtons: { flexDirection: "row" },
+  startButton: { flexDirection: "row" },
   btn: {
     flex: 1,
     height: 50,
