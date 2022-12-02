@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   StyleSheet,
   FlatList,
@@ -83,16 +84,41 @@ const Slide = ({ item }) => {
 };
 
 const OnboardingScreen = () => {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(5);
+
+  const Footer = () => {
+    return (
+      <View style={styles.footer}>
+        <View style={styles.footerIndicators}>
+          {slides.map((_, idx) => (
+            <View
+              key={idx}
+              style={[
+                styles.indicator,
+                currentSlideIndex === idx && {
+                  backgroundColor: "teal",
+                  width: 24,
+                },
+              ]}
+            />
+          ))}
+        </View>
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
+      <StatusBar style="dark" />
       <FlatList
         horizontal
+        pagingEnabled
         showsHorizontalScrollIndicator={false}
         data={slides}
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => <Slide item={item} />}
       />
-      <StatusBar style="light" />
+      <Footer />
     </SafeAreaView>
   );
 };
@@ -102,7 +128,7 @@ export default OnboardingScreen;
 const styles = StyleSheet.create({
   safeAreaContainer: { flex: 1, backgroundColor: COLORS.white },
   listContainer: {
-    height: height * 0.95,
+    height: height * 0.9,
   },
   image: {
     height: "60%",
@@ -122,7 +148,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     maxWidth: width,
     padding: 10,
-
     textAlign: "center",
+  },
+  footer: {
+    height: height * 0.2,
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+  },
+  footerIndicators: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  indicator: {
+    height: 4.5,
+    width: 12,
+    backgroundColor: "grey",
+    marginHorizontal: 3,
+    borderRadius: 8,
   },
 });
