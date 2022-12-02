@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   StyleSheet,
   FlatList,
@@ -85,7 +85,8 @@ const Slide = ({ item }) => {
 };
 
 const OnboardingScreen = () => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(5);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const slideRef = useRef();
 
   const Footer = () => {
     return (
@@ -111,14 +112,14 @@ const OnboardingScreen = () => {
                 styles.btn,
                 {
                   backgroundColor: COLORS.white,
-                  borderWidth: 2,
+                  borderWidth: 1,
                   borderColor: "teal",
                 },
               ]}
             >
               <Text style={[styles.btnLabel, { color: "#000000" }]}>SKIP</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={goNextSlide}>
               <Text
                 style={[styles.btnLabel, { fontWeight: "bold", fontSize: 16 }]}
               >
@@ -131,10 +132,27 @@ const OnboardingScreen = () => {
     );
   };
 
+  const updateCurrentSlideIndex = (evt) => {
+    const contentOffsetX = evt.nativeEvent.contentOffset.x;
+    const currentIndex = Math.round(contentOffsetX / width);
+    setCurrentSlideIndex(currentIndex);
+  };
+
+  const goNextSlide = () => {
+    const nextSlideIndex = currentSlideIndex + 1;
+    if (nextSlideIndex !== slides.length) {
+      const offset = nextSlideIndex * width;
+      slideRef?.current?.scrollToOffset({ offset });
+      setCurrentSlideIndex(nextSlideIndex);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <StatusBar style="dark" />
       <FlatList
+        ref={slideRef}
+        onMomentumScrollEnd={updateCurrentSlideIndex}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
@@ -161,7 +179,7 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     color: COLORS.primary,
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
     maxWidth: width,
     padding: 10,
@@ -169,7 +187,7 @@ const styles = StyleSheet.create({
   },
   textSubTitle: {
     color: COLORS.primary,
-    fontSize: 14,
+    fontSize: 16,
     maxWidth: width,
     padding: 10,
     textAlign: "center",
@@ -186,7 +204,7 @@ const styles = StyleSheet.create({
   },
   indicator: {
     height: 4.5,
-    width: 12,
+    width: 8,
     backgroundColor: "grey",
     marginHorizontal: 3,
     borderRadius: 8,
