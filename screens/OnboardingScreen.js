@@ -116,6 +116,7 @@ const OnboardingScreen = () => {
                   borderColor: "teal",
                 },
               ]}
+              onPress={skipSlides}
             >
               <Text style={[styles.btnLabel, { color: "#000000" }]}>SKIP</Text>
             </TouchableOpacity>
@@ -147,6 +148,12 @@ const OnboardingScreen = () => {
     }
   };
 
+  const skipSlides = () => {
+    const lastSlideIndex = slides.length - 1;
+    const offset = lastSlideIndex * width;
+    slideRef?.current?.scrollToOffset({ offset });
+    setCurrentSlideIndex(lastSlideIndex);
+  };
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <StatusBar style="dark" />
