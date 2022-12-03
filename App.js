@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import "react-native-gesture-handler";
@@ -13,22 +14,33 @@ const Stack = createStackNavigator();
 const HomeImage = require("./assets/splash.jpg");
 
 export default function App() {
-  return (
-    // <View style={styles.container}>
-    //   <HomeImageViewer homeImageSource={HomeImage} />
-    //   <Text style={styles.homeText}>Why Use mCarFix App...</Text>
+  const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
 
-    //   <StatusBar style="auto" />
-    // </View>
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen
-          name="OnboardingScreen"
-          component={OnboardingScreen}
-        ></Stack.Screen>
-        <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
+  useEffect(async () => {
+    const appData = await AsyncStorage.getItem("isAppFirstLaunched");
+    if (appData === null) {
+      setIsAppFirstLaunched(true);
+      AsyncStorage.setItem("isAppFirstLaunched", "false");
+    } else {
+      setIsAppFirstLaunched(false);
+    }
+  }, []);
+
+  return (
+    isAppFirstLaunched !== null && (
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {isAppFirstLaunched && (
+            <Stack.Screen
+              name="OnboardingScreen"
+              component={OnboardingScreen}
+            ></Stack.Screen>
+          )}
+
+          <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
   );
 }
 
