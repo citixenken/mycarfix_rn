@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import HomeImageViewer from "../components/HomeImageViewer";
 import Help from "../components/Help";
+import Title from "../components/Title";
 
 const PlaceholderImage = require("../assets/images/mcarfix-logo.jpg");
 
@@ -50,6 +51,7 @@ const HomeScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
+        <Title onPress={() => navigation.navigate("AboutScreen")} />
       </View>
     </SafeAreaView>
   );
