@@ -1,9 +1,50 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  StatusBar,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
+import HomeImageViewer from "../components/HomeImageViewer";
+
+const PlaceholderImage = require("../assets/images/mcarfix-logo.jpg");
+
+const COLORS = { primary: "teal", white: "#FFFFFF" };
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView>
-      <Text style={styles.homeScreenText}>HomeScreen</Text>
+    <SafeAreaView style={styles.safeAreaContainer}>
+      <StatusBar style="auto" />
+      <HomeImageViewer homeImageSource={PlaceholderImage} />
+      <View style={styles.loginAndSignUpContainer}>
+        <View style={styles.homeScreenButtons}>
+          <TouchableOpacity
+            style={[
+              styles.btn,
+              {
+                borderWidth: 1,
+                borderColor: "teal",
+                marginBottom: 20,
+              },
+            ]}
+            onPress={() => navigation.navigate("LoginScreen")}
+          >
+            <Text style={styles.btnLabel}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, { backgroundColor: "orange" }]}
+            onPress={() => navigation.navigate("SignUpScreen")}
+          >
+            <Text
+              style={[styles.btnLabel, { fontWeight: "bold", fontSize: 18 }]}
+            >
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -11,5 +52,24 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  //   homeScreenText: { flex: 1, justifyContent: "center", alignItems: "center" },
+  safeAreaContainer: {
+    flex: 1,
+    backgroundColor: "white",
+    borderColor: "teal",
+    margin: 10,
+    borderWidth: 1,
+    borderRadius: 18,
+  },
+  loginAndSignUpContainer: {},
+  homeScreenButtons: { flexDirection: "column" },
+  btn: {
+    height: 50,
+    marginHorizontal: 60,
+    borderRadius: 8,
+    backgroundColor: "teal",
+    justifyContent: "center",
+    alignItems: "center",
+    shadowRadius: 20,
+  },
+  btnLabel: { color: "#ffffff", fontSize: 18 },
 });

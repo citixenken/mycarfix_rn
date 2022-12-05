@@ -8,10 +8,7 @@ import OnboardingScreen from "./screens/OnboardingScreen";
 import HomeScreen from "./screens/HomeScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import HomeImageViewer from "./components/HomeImageViewer";
-
 const Stack = createStackNavigator();
-const HomeImage = require("./assets/splash.jpg");
 
 export default function App() {
   const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);

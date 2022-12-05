@@ -1,4 +1,4 @@
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, Dimensions } from "react-native";
 
 const HomeImageViewer = ({ homeImageSource }) => {
   return <Image source={homeImageSource} style={styles.image} />;
@@ -7,5 +7,9 @@ const HomeImageViewer = ({ homeImageSource }) => {
 export default HomeImageViewer;
 
 const styles = StyleSheet.create({
-  image: { width: 320, height: 320, borderRadius: 18 },
+  image: {
+    resizeMode: "contain",
+    width: 388,
+    height: 440,
+  },
 });
