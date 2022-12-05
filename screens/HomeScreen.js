@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import HomeImageViewer from "../components/HomeImageViewer";
 
 const PlaceholderImage = require("../assets/images/mcarfix-logo.jpg");
@@ -14,6 +16,8 @@ const PlaceholderImage = require("../assets/images/mcarfix-logo.jpg");
 const COLORS = { primary: "teal", white: "#FFFFFF" };
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <StatusBar style="auto" />
@@ -54,7 +58,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#fbfbfb",
     borderColor: "teal",
     margin: 10,
     borderWidth: 1,
@@ -65,11 +69,10 @@ const styles = StyleSheet.create({
   btn: {
     height: 50,
     marginHorizontal: 60,
-    borderRadius: 8,
+    borderRadius: 6,
     backgroundColor: "teal",
     justifyContent: "center",
     alignItems: "center",
-    shadowRadius: 20,
   },
   btnLabel: { color: "#ffffff", fontSize: 18 },
 });

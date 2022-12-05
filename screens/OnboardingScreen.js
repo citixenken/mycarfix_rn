@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
-const COLORS = { primary: "teal", white: "#FFFFFF" };
+const COLORS = { primary: "teal", white: "#FBFBFB" };
 
 const slides = [
   {
