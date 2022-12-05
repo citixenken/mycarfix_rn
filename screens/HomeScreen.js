@@ -10,6 +10,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 import HomeImageViewer from "../components/HomeImageViewer";
+import Help from "../components/Help";
 
 const PlaceholderImage = require("../assets/images/mcarfix-logo.jpg");
 
@@ -21,6 +22,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <StatusBar style="auto" />
+      <Help onPress={() => navigation.navigate("HelpScreen")} />
       <HomeImageViewer homeImageSource={PlaceholderImage} />
       <View style={styles.loginAndSignUpContainer}>
         <View style={styles.homeScreenButtons}>
@@ -73,6 +75,9 @@ const styles = StyleSheet.create({
     backgroundColor: "teal",
     justifyContent: "center",
     alignItems: "center",
+
+    shadowColor: "black",
+    elevation: 10,
   },
   btnLabel: { color: "#ffffff", fontSize: 18 },
 });
