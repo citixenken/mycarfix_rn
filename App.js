@@ -10,6 +10,7 @@ import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import HelpScreen from "./screens/HelpScreen";
 import AboutScreen from "./screens/AboutScreen";
+import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
@@ -51,6 +52,10 @@ export default function App() {
           <Stack.Screen
             name="AboutScreen"
             component={AboutScreen}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="ForgotPasswordScreen"
+            component={ForgotPasswordScreen}
           ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
