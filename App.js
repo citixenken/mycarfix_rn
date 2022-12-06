@@ -19,14 +19,17 @@ const Stack = createStackNavigator();
 export default function App() {
   const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
 
-  useEffect(async () => {
-    const appData = await AsyncStorage.getItem("isAppFirstLaunched");
-    if (appData === null) {
-      setIsAppFirstLaunched(true);
-      AsyncStorage.setItem("isAppFirstLaunched", "false");
-    } else {
-      setIsAppFirstLaunched(false);
-    }
+  //IIFE solution
+  useEffect(() => {
+    (async () => {
+      const appData = await AsyncStorage.getItem("isAppFirstLaunched");
+      if (appData === null) {
+        setIsAppFirstLaunched(true);
+        AsyncStorage.setItem("isAppFirstLaunched", "false");
+      } else {
+        setIsAppFirstLaunched(false);
+      }
+    })();
   }, []);
 
   return (

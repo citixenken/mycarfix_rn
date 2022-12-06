@@ -1,5 +1,4 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
 
 const Title = ({ onPress }) => {
   return (
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fbfbfb",
     paddingLeft: 20,
     paddingRight: 10,
-    marginTop: 135,
+    marginTop: 225,
     marginLeft: 116,
     marginRight: 30,
 

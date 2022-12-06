@@ -6,8 +6,10 @@ import {
   StatusBar,
   TouchableOpacity,
   TextInput,
+  Pressable,
+  KeyboardAvoidingView,
 } from "react-native";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -23,9 +25,14 @@ const NewUserScreen = () => {
   const navigation = useNavigation();
 
   const [agree, setAgree] = useState(false);
+  // const [text, setText] = useState("");
+  // const [passwordVisible, setPasswordVisible] = useState(true);
 
   return (
-    <SafeAreaView style={styles.safeAreaContainer}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.safeAreaContainer}
+    >
       <StatusBar style="auto" />
       <View style={styles.navBtns}>
         <BackBtn onPress={() => navigation.navigate("SignUpScreen")} />
@@ -56,18 +63,25 @@ const NewUserScreen = () => {
             <TextInput
               placeholder="Password"
               style={styles.password}
+              autoCapitalize="none"
+              autoCorrect={false}
               secureTextEntry
+              enablesReturnKeyAutomatically
               underlineColorAndroid="teal"
             ></TextInput>
             <TextInput
               placeholder="Confirm Password"
               style={styles.password}
+              autoCapitalize="none"
+              autoCorrect={false}
               secureTextEntry
+              enablesReturnKeyAutomatically
               underlineColorAndroid="teal"
             ></TextInput>
             <TextInput
               placeholder="Emergency Contact (optional)"
               style={styles.emergencyContact}
+              keyboardType="phone-pad"
               underlineColorAndroid="teal"
             ></TextInput>
           </View>
@@ -115,7 +129,7 @@ const NewUserScreen = () => {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 

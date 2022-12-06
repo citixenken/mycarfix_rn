@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   TextInput,
+  KeyboardAvoidingView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -18,7 +19,10 @@ const LoginScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={styles.safeAreaContainer}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.safeAreaContainer}
+    >
       <StatusBar style="auto" />
       <Help onPress={() => navigation.navigate("HelpScreen")} />
       <HomeImageViewer homeImageSource={PlaceholderImage} />
@@ -50,8 +54,8 @@ const LoginScreen = () => {
             </Text>
           </TouchableOpacity>
           {/* <Text style={{ marginTop: 20, textAlign: "center" }}>
-            Forgot Password?
-          </Text> */}
+          Forgot Password?
+        </Text> */}
           <View style={[styles.noAccount, { marginTop: 20 }]}>
             <TouchableOpacity
               onPress={() => navigation.navigate("ForgotPasswordScreen")}
@@ -94,7 +98,7 @@ const LoginScreen = () => {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 
