@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "flex-start",
     marginTop: 10,
-    marginRight: 10,
+    marginLeft: 10,
     paddingLeft: 10,
-    borderRadius: 20,
+    // borderRadius: 20,
   },
 });

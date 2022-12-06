@@ -25,7 +25,7 @@ const SignUpScreen = () => {
           <Text style={styles.text}>Create Account</Text>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => navigation.navigate("LoginScreen")}
+            onPress={() => navigation.navigate("NewUserScreen")}
           >
             <Text
               style={[styles.btnLabel, { fontWeight: "bold", fontSize: 18 }]}
