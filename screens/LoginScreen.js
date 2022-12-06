@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     elevation: 10,
   },
-  btnLabel: { color: "#ffffff", fontSize: 18 },
   loginContainer: {
     flex: 1 / 2,
     justifyContent: "center",
