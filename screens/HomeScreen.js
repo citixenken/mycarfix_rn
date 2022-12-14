@@ -15,7 +15,7 @@ import Title from "../components/Title";
 
 const PlaceholderImage = require("../assets/images/mcarfix-logo.jpg");
 
-const COLORS = { primary: "teal", white: "#FFFFFF" };
+const COLORS = { primary: "teal", white: "#FFFFFF", secondary: "orange" };
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -23,7 +23,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <StatusBar style="auto" />
-      <Help onPress={() => navigation.navigate("HelpScreen")} />
+      <Help onPress={() => navigation.navigate("Help")} />
       <HomeImageViewer homeImageSource={PlaceholderImage} />
       <View style={styles.loginAndSignUpContainer}>
         <View style={styles.homeScreenButtons}>
@@ -36,13 +36,13 @@ const HomeScreen = () => {
                 marginBottom: 20,
               },
             ]}
-            onPress={() => navigation.navigate("LoginScreen")}
+            onPress={() => navigation.navigate("Login")}
           >
             <Text style={styles.btnLabel}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.btn, { backgroundColor: "orange" }]}
-            onPress={() => navigation.navigate("SignUpScreen")}
+            style={[styles.btn, { backgroundColor: COLORS.secondary }]}
+            onPress={() => navigation.navigate("SignUp")}
           >
             <Text
               style={[styles.btnLabel, { fontWeight: "bold", fontSize: 18 }]}
@@ -51,7 +51,7 @@ const HomeScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <Title onPress={() => navigation.navigate("AboutScreen")} />
+        <Title onPress={() => navigation.navigate("About")} />
       </View>
     </SafeAreaView>
   );

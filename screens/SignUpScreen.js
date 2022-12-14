@@ -17,7 +17,7 @@ const SignUpScreen = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
-      <BackBtn onPress={() => navigation.navigate("HomeScreen")} />
+      <BackBtn onPress={() => navigation.navigate("Home")} />
       <HomeImageViewer homeImageSource={PlaceholderImage} />
 
       <View style={styles.signUpContainer}>
@@ -25,7 +25,7 @@ const SignUpScreen = () => {
           <Text style={styles.text}>Create Account</Text>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => navigation.navigate("NewUserScreen")}
+            onPress={() => navigation.navigate("NewUser")}
           >
             <Text
               style={[styles.btnLabel, { fontWeight: "bold", fontSize: 18 }]}

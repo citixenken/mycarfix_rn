@@ -19,7 +19,7 @@ const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
-      <BackBtn onPress={() => navigation.navigate("HomeScreen")} />
+      <BackBtn onPress={() => navigation.navigate("Home")} />
       <HomeImageViewer homeImageSource={PlaceholderImage} />
 
       <View style={styles.forgotContainer}>
@@ -42,9 +42,7 @@ const ForgotPasswordScreen = () => {
           </TouchableOpacity>
           <View style={styles.gotPassword}>
             <Text>Got your Password? </Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("LoginScreen")}
-            >
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
               <Text
                 style={[
                   styles.btnLabel,

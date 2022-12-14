@@ -11,12 +11,18 @@ import HelpScreen from "./screens/HelpScreen";
 import AboutScreen from "./screens/AboutScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import NewUserScreen from "./screens/NewUserScreen";
+import DashboardScreen from "./screens/loggedIn/DashboardScreen";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { auth } from "./firebase/config";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   //IIFE solution
   useEffect(() => {
@@ -29,45 +35,63 @@ export default function App() {
         setIsAppFirstLaunched(false);
       }
     })();
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // navigation.navigate("Dashboard");
+        setLoggedIn(true);
+      } else {
+        // User is signed out
+        // navigation.navigate("Login");
+        setLoggedIn(false);
+      }
+    });
+    return unsubscribe;
   }, []);
 
-  return (
-    isAppFirstLaunched !== null && (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {isAppFirstLaunched && (
+  if (loggedIn === true) {
+    return (
+      isAppFirstLaunched !== null && (
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen
-              name="OnboardingScreen"
-              component={OnboardingScreen}
+              name="Dashboard"
+              component={DashboardScreen}
             ></Stack.Screen>
-          )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      )
+    );
+  } else {
+    return (
+      isAppFirstLaunched !== null && (
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            {isAppFirstLaunched && (
+              <Stack.Screen
+                name="Onboarding"
+                component={OnboardingScreen}
+              ></Stack.Screen>
+            )}
 
-          <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
-          <Stack.Screen
-            name="LoginScreen"
-            component={LoginScreen}
-          ></Stack.Screen>
-          <Stack.Screen
-            name="SignUpScreen"
-            component={SignUpScreen}
-          ></Stack.Screen>
-          <Stack.Screen name="HelpScreen" component={HelpScreen}></Stack.Screen>
-          <Stack.Screen
-            name="AboutScreen"
-            component={AboutScreen}
-          ></Stack.Screen>
-          <Stack.Screen
-            name="ForgotPasswordScreen"
-            component={ForgotPasswordScreen}
-          ></Stack.Screen>
-          <Stack.Screen
-            name="NewUserScreen"
-            component={NewUserScreen}
-          ></Stack.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
-    )
-  );
+            <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
+            <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+            <Stack.Screen name="SignUp" component={SignUpScreen}></Stack.Screen>
+            <Stack.Screen name="Help" component={HelpScreen}></Stack.Screen>
+            <Stack.Screen name="About" component={AboutScreen}></Stack.Screen>
+            <Stack.Screen
+              name="ForgotPassword"
+              component={ForgotPasswordScreen}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="NewUser"
+              component={NewUserScreen}
+            ></Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      )
+    );
+  }
 }
 
 const styles = StyleSheet.create({

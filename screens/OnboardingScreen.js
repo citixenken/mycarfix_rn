@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
-const COLORS = { primary: "teal", white: "#FBFBFB" };
+const COLORS = { primary: "teal", white: "#FBFBFB", secondary: "orange" };
 
 const slides = [
   {
@@ -113,7 +113,7 @@ const OnboardingScreen = () => {
             <View style={styles.startButton}>
               <TouchableOpacity
                 style={styles.btn}
-                onPress={() => navigation.replace("HomeScreen")}
+                onPress={() => navigation.replace("Home")}
                 // onPress={() => navigation.navigate("HomeScreen")}
               >
                 <Text
