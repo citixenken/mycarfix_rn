@@ -3,18 +3,10 @@ import "react-native-gesture-handler";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import React, { useState, useRef } from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useScrollToTop } from "@react-navigation/native";
 
-import { auth } from "../../../firebase/config";
+import { auth } from "../firebase/config";
 import { signOut } from "firebase/auth";
-
-// import About from "./About";
-// import Informational from "./Informational";
-// import MVRegulators from "./MVRegulators";
-// import UserActivities from "./UserActivities";
-
-// const Drawer = createDrawerNavigator();
 
 const COLORS = {
   primary: "#116c6e",
@@ -61,15 +53,6 @@ const DashboardScreen = () => {
         </Text>
       </TouchableOpacity>
     </View>
-
-    // <NavigationContainer>
-    // <Drawer.Navigator initialRouteName="About">
-    //   <Drawer.Screen name="About" component={About} />
-    //   <Drawer.Screen name="Informational" component={Informational} />
-    //   <Drawer.Screen name="MVRegulators" component={MVRegulators} />
-    //   <Drawer.Screen name="UserActivities" component={UserActivities} />
-    // </Drawer.Navigator>
-    // </NavigationContainer>
   );
 };
 

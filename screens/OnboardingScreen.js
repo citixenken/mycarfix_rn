@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
+import { useFonts } from "expo-font";
 
 const { width, height } = Dimensions.get("window");
 
@@ -90,6 +91,15 @@ const OnboardingScreen = () => {
   const slideRef = useRef();
 
   const navigation = useNavigation();
+
+  const [fontsLoaded] = useFonts({
+    RobotoMedium: require("../assets/fonts/Roboto-Medium.ttf"),
+    RobotoLight: require("../assets/fonts/Roboto-Light.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   const Footer = () => {
     return (
@@ -213,18 +223,19 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     color: COLORS.primary,
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 18,
     maxWidth: width,
     padding: 10,
     textAlign: "center",
+    fontFamily: "RobotoMedium",
   },
   textSubTitle: {
     color: COLORS.primary,
-    fontSize: 16,
+    fontSize: 14,
     maxWidth: width,
     padding: 10,
     textAlign: "center",
+    fontFamily: "RobotoLight",
   },
   footer: {
     height: height * 0.2,

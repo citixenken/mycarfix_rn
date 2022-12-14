@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 
 import React, { useState, useRef } from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -9,11 +9,11 @@ import { useScrollToTop } from "@react-navigation/native";
 import { auth } from "../../../firebase/config";
 import { signOut } from "firebase/auth";
 
+import DashboardScreen from "../../DashboardScreen";
 import About from "./About";
 import Informational from "./Informational";
 import MVRegulators from "./MVRegulators";
 import UserActivities from "./UserActivities";
-import DashboardScreen from "./DashboardScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -48,24 +48,9 @@ const LandingScreen = () => {
   };
 
   return (
-    // <View showsVerticalScrollIndicator={false} style={styles.container}>
-    //   <Text style={styles.heading}>
-    //     Welcome back, {auth.currentUser?.email.match(/^(.+)@/)[1]}!
-    //     {/* Welcome back, {auth.currentUser?.email.split("@")[0].toUpperCase()}! */}
-    //   </Text>
-    //   <TouchableOpacity
-    //     style={[styles.btn, { backgroundColor: COLORS.secondary }]}
-    //     onPress={() => handleLogout()}
-    //   >
-    //     <Text style={[styles.btnLabel, { fontWeight: "bold", fontSize: 18 }]}>
-    //       Log Out
-    //     </Text>
-    //   </TouchableOpacity>
-    // </View>
-
-    // <NavigationContainer>
-    <Drawer.Navigator initialRouteName="Dashboard">
-      <Drawer.Screen name="Dashboard" component={DashboardScreen} />
+    // <Drawer.Navigator initialRouteName="Dashboard">
+    <Drawer.Navigator>
+      <Drawer.Screen name="DashboardScreen" component={DashboardScreen} />
       <Drawer.Screen name="About" component={About} />
       <Drawer.Screen name="Informational" component={Informational} />
       <Drawer.Screen name="MVRegulators" component={MVRegulators} />

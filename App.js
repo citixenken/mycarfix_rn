@@ -54,37 +54,43 @@ export default function App() {
       // isAppFirstLaunched !== null && (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Landing" component={LandingScreen}></Stack.Screen>
+          <Stack.Screen
+            name="LandingScreen"
+            component={LandingScreen}
+          ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
       // )
     );
   } else {
     return (
-      // isAppFirstLaunched !== null && (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {isAppFirstLaunched && (
-            <Stack.Screen
-              name="Onboarding"
-              component={OnboardingScreen}
-            ></Stack.Screen>
-          )}
+      isAppFirstLaunched !== null && (
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            {isAppFirstLaunched && (
+              <Stack.Screen
+                name="Onboarding"
+                component={OnboardingScreen}
+              ></Stack.Screen>
+            )}
 
-          <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
-          <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
-          <Stack.Screen name="SignUp" component={SignUpScreen}></Stack.Screen>
-          <Stack.Screen name="Help" component={HelpScreen}></Stack.Screen>
-          <Stack.Screen name="About" component={AboutScreen}></Stack.Screen>
-          <Stack.Screen
-            name="ForgotPassword"
-            component={ForgotPasswordScreen}
-          ></Stack.Screen>
-          <Stack.Screen name="NewUser" component={NewUserScreen}></Stack.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
+            <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+            <Stack.Screen name="SignUp" component={SignUpScreen}></Stack.Screen>
+            <Stack.Screen name="Help" component={HelpScreen}></Stack.Screen>
+            <Stack.Screen name="About" component={AboutScreen}></Stack.Screen>
+            <Stack.Screen
+              name="ForgotPassword"
+              component={ForgotPasswordScreen}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="NewUser"
+              component={NewUserScreen}
+            ></Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      )
     );
-    // );
   }
 }
 
