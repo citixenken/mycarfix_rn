@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const MVRegulators = () => {
+const EmergencyServices = () => {
   return (
     <View>
-      <Text>MVRegulators</Text>
+      <Text>EmergencyServices</Text>
     </View>
   );
 };
 
-export default MVRegulators;
+export default EmergencyServices;
 
 const styles = StyleSheet.create({});

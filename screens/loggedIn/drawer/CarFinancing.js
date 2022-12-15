@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const UserActivities = () => {
+const CarFInancing = () => {
   return (
     <View>
-      <Text>UserActivities</Text>
+      <Text>CarFInancing</Text>
     </View>
   );
 };
 
-export default UserActivities;
+export default CarFInancing;
 
 const styles = StyleSheet.create({});
