@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState, useRef } from "react";
 import { useScrollToTop } from "@react-navigation/native";
 
-import { auth } from "../firebase/config";
+import { auth } from "../../../firebase/config";
 import { signOut } from "firebase/auth";
 
 const COLORS = {

@@ -12,6 +12,7 @@ import AboutScreen from "./screens/AboutScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import NewUserScreen from "./screens/NewUserScreen";
 import LandingScreen from "./screens/loggedIn/drawer/LandingScreen";
+import DashboardScreen from "./screens/loggedIn/drawer/DashboardScreen";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -33,34 +34,34 @@ export default function App() {
         AsyncStorage.setItem("isAppFirstLaunched", "false");
       } else {
         setIsAppFirstLaunched(false);
-
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-          if (user) {
-            // navigation.navigate("Dashboard");
-            setLoggedIn(true);
-          } else {
-            // User is signed out
-            // navigation.navigate("Login");
-            setLoggedIn(false);
-          }
-        });
-        return unsubscribe;
       }
+
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // navigation.navigate("Dashboard");
+          setLoggedIn(true);
+        } else {
+          // User is signed out
+          // navigation.navigate("Login");
+          setLoggedIn(false);
+        }
+      });
+      return unsubscribe;
     })();
   }, []);
 
   if (loggedIn === true) {
     return (
-      // isAppFirstLaunched !== null && (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen
-            name="LandingScreen"
-            component={LandingScreen}
-          ></Stack.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
-      // )
+      isAppFirstLaunched !== null && (
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen
+              name="LandingScreen"
+              component={LandingScreen}
+            ></Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      )
     );
   } else {
     return (
