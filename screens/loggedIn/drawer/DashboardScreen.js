@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heading: {
-    fontSize: 32,
+    fontSize: 18,
     marginTop: 20,
     marginHorizontal: 20,
     marginVertical: 20,
