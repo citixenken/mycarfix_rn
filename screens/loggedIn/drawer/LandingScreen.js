@@ -23,7 +23,7 @@ import SpecialistServices from "./SpecialistServices";
 import mCarFixSPC from "./DashboardScreen";
 import Logout from "./Logout";
 
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 
@@ -40,6 +40,8 @@ const LandingScreen = () => {
     <Drawer.Navigator
       initialRouteName="Dashboard"
       screenOptions={{
+        drawerActiveTintColor: "#116c6e",
+        drawerActiveBackgroundColor: "orange",
         swipeEnabled: false,
         headerTitleAlign: "center",
         headerStyle: {
@@ -71,7 +73,7 @@ const LandingScreen = () => {
           title: "Transactions",
           drawerIcon: ({ focused }) => (
             <FontAwesome
-              name="home"
+              name="credit-card"
               size={focused ? 28 : 24}
               color={focused ? "#116c6e" : "#232323"}
             />
@@ -85,7 +87,7 @@ const LandingScreen = () => {
           title: "Support",
           drawerIcon: ({ focused }) => (
             <FontAwesome
-              name="home"
+              name="support"
               size={focused ? 28 : 24}
               color={focused ? "#116c6e" : "#232323"}
             />
@@ -182,8 +184,8 @@ const LandingScreen = () => {
         options={{
           title: "Select Your Country",
           drawerIcon: ({ focused }) => (
-            <FontAwesome
-              name="home"
+            <MaterialCommunityIcons
+              name="select-marker"
               size={focused ? 28 : 24}
               color={focused ? "#116c6e" : "#232323"}
             />
@@ -196,8 +198,8 @@ const LandingScreen = () => {
         options={{
           title: "Emergency Services",
           drawerIcon: ({ focused }) => (
-            <FontAwesome
-              name="home"
+            <MaterialCommunityIcons
+              name="car-emergency"
               size={focused ? 28 : 24}
               color={focused ? "#116c6e" : "#232323"}
             />
@@ -211,7 +213,7 @@ const LandingScreen = () => {
           title: "News and Articles",
           drawerIcon: ({ focused }) => (
             <FontAwesome
-              name="home"
+              name="newspaper-o"
               size={focused ? 28 : 24}
               color={focused ? "#116c6e" : "#232323"}
             />
@@ -224,8 +226,8 @@ const LandingScreen = () => {
         options={{
           title: "Traffic Rules and Penalties",
           drawerIcon: ({ focused }) => (
-            <FontAwesome
-              name="home"
+            <MaterialCommunityIcons
+              name="traffic-light"
               size={focused ? 28 : 24}
               color={focused ? "#116c6e" : "#232323"}
             />
@@ -239,7 +241,7 @@ const LandingScreen = () => {
           title: "Car Financing",
           drawerIcon: ({ focused }) => (
             <FontAwesome
-              name="home"
+              name="money"
               size={focused ? 28 : 24}
               color={focused ? "#116c6e" : "#232323"}
             />
@@ -280,8 +282,8 @@ const LandingScreen = () => {
         options={{
           title: "Logout",
           drawerIcon: ({ focused }) => (
-            <FontAwesome
-              name="home"
+            <MaterialCommunityIcons
+              name="logout"
               size={focused ? 28 : 24}
               color={focused ? "#116c6e" : "#232323"}
             />
