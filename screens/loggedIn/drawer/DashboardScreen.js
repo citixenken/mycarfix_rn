@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 
 import React, { useState, useRef } from "react";
 import { useScrollToTop } from "@react-navigation/native";
@@ -16,11 +16,15 @@ const COLORS = {
   textInputBg: "#ebebeb",
 };
 
-const DashboardScreen = () => {
+const DashboardScreen = ({ navigation }) => {
   const ref = useRef(null);
   useScrollToTop(ref);
 
   const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const openDrawerHandler = () => {
+    navigation.toggleDrawer();
+  };
 
   const handleLogout = () => {
     signOut(auth)
@@ -44,6 +48,7 @@ const DashboardScreen = () => {
         Welcome back, {auth.currentUser?.email.match(/^(.+)@/)[1]}!
         {/* Welcome back, {auth.currentUser?.email.split("@")[0].toUpperCase()}! */}
       </Text>
+      <Button title="Open Drawer" onPress={openDrawerHandler} />
       <TouchableOpacity
         style={[styles.btn, { backgroundColor: COLORS.secondary }]}
         onPress={() => handleLogout()}
